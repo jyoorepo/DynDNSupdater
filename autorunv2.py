@@ -11,11 +11,11 @@ externalIp = getIp()
 
 def job():
     refreshedIp = getIp()
-    if refreshedIp == externalIp:
+    if refreshedIp != externalIp:
         print("IP does not match")
-        exec(open('dynupdater.py').read())
+        exec(open('./dynupdater.py').read())
 
-schedule.every(5).seconds.do(job)
+schedule.every(1).hour.do(job)
 
 while True:
     schedule.run_pending()
